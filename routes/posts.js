@@ -3,7 +3,9 @@ const router = express.Router();
 
 const posts = require("../data/posts");
 const error = require("../utilities/error");
-// app.use("/api/posts", posts);
+//importing the comments array
+const comments = require("./data/comments");
+
 router
   .route("/")
   .get((req, res) => {
@@ -87,4 +89,6 @@ router
     else next();
   });
 
+//2.10 GET /posts/:id/comments
+//Retrieves all comments made on the post with the specified id.
 module.exports = router;
