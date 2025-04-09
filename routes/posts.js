@@ -91,7 +91,7 @@ router
 
 //2.10 GET /posts/:id/comments
 //Retrieves all comments made on the post with the specified id.
-router.route("/:id/comments").get((req, res) => {
+router.route("/:id/comments").get((req, res, next) => {
   // Extract the post id from the URL parameters.
   const postId = req.params.id;
   // Filter the comments array to only those that match the postId.
@@ -103,5 +103,26 @@ router.route("/:id/comments").get((req, res) => {
     // otherwise res with the filtered comments
     res.json(postComments);
   }
+});
+
+//2.11
+router.route("/posts/:id/comments").get((req, res, next) => {
+  // Extract the post id from the URL parameter.
+  const postId = req.params.id;
+
+  // Filter the comments array for comments with the matching postId.
+  let filteredComments = comments.filter((comment) => comment.postId == postId);
+
+  // If a userId query parameter is provided, further filter the comments.
+  if (req.query.userId) {
+    filteredComments = filteredComments.filter(
+      (comment) => comment.userId == req.query.userId
+    );
+  }
+  if (filteredComments.length === 0) {
+    return next(error(404, "No comments found for this post and user."));
+  }
+
+  res.json(filteredComments);
 });
 module.exports = router;
