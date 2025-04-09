@@ -91,4 +91,17 @@ router
 
 //2.10 GET /posts/:id/comments
 //Retrieves all comments made on the post with the specified id.
+router.route("/:id/comments").get((req, res) => {
+  // Extract the post id from the URL parameters.
+  const postId = req.params.id;
+  // Filter the comments array to only those that match the postId.
+  const postComments = comments.filter((comment) => comment.postId == postId);
+  //error handling
+  if (postComments == []) {
+    return next(error(404, "No related comments to post id"));
+  } else {
+    // otherwise res with the filtered comments
+    res.json(postComments);
+  }
+});
 module.exports = router;
