@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 //data import and error import
-const comments = require("./data/comments");
+const comments = require("../data/comments");
 const users = require("../data/users");
 const error = require("../utilities/error");
 //making posts data available here too
@@ -94,15 +94,20 @@ router.route("/:id/posts").get((req, res, next) => {
   else next();
 });
 
+//
 router.route("/:id/comments").get((req, res) => {
   const userId = req.params.id;
-  const userComments = comments.filter((comment) => comment.userId == userId);
+  let userComments = comments.filter((comment) => comment.userId == userId);
   if (userComments.length == 0) {
     return next(error(404, "No related comments to userId"));
-  } else {
-    // otherwise res with the filtered comments
-    res.json(userComments);
   }
+  if (req.query.postId) {
+    userComments = userComments.filter(
+      (comment) => comment.postId == req.query.postId
+    );
+  }
+  // otherwise res with the filtered comments
+  res.json(userComments);
 });
 
 module.exports = router;

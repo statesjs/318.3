@@ -4,7 +4,7 @@ const router = express.Router();
 const posts = require("../data/posts");
 const error = require("../utilities/error");
 //importing the comments array
-const comments = require("./data/comments");
+const comments = require("../data/comments");
 
 router
   .route("/")

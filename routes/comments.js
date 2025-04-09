@@ -70,7 +70,7 @@ router
     res.json(comment);
   })
   //2.6 patch
-  .patch("/:id", (req, res, next) => {
+  .patch((req, res, next) => {
     // ids are unique, so use find() again
     const comment = comments.find((c) => c.id == req.params.id);
     //again error handling for non existentence
