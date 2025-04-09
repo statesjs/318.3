@@ -3,7 +3,7 @@ const router = express.Router();
 
 const posts = require("../data/posts");
 const error = require("../utilities/error");
-
+// app.use("/api/posts", posts);
 router
   .route("/")
   .get((req, res) => {
@@ -14,6 +14,16 @@ router
         type: "GET",
       },
     ];
+    //added part 2.2 here ex. http://localhost:3000/api/posts?api-key=perscholas&userId=3
+    //both use the same end point, just made an addition to account for the optional addition of
+    //a query parameter to filter out, and then return so it doesn't move on to the rest of the posts
+    if (req.query.userId) {
+      const filteredPosts = posts.filter(
+        (post) => post.userId == req.query.userId
+      );
+      res.json({ filteredPosts, links });
+      return;
+    }
 
     res.json({ posts, links });
   })

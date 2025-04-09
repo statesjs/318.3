@@ -83,7 +83,7 @@ router
     else next();
   });
 
-//PART 4
+//PART 2.1
 //gets all user posts  ex. http://localhost:3000/api/users/1/posts?api-key=perscholas
 router.route("/:id/posts").get((req, res, next) => {
   const user = users.find((u) => u.id == req.params.id);

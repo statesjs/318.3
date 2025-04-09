@@ -1,19 +1,18 @@
 const express = require("express");
-const bodyParser = require("body-parser");
-
-const users = require("./routes/users");
-const posts = require("./routes/posts");
-
-const error = require("./utilities/error");
-
 const app = express();
 const port = 3000;
 
+//routes
+const users = require("./routes/users");
+const posts = require("./routes/posts");
+const error = require("./utilities/error");
+
+//imported route && data to comments
+const comments = require("./data/comments");
+const commentsRouter = require("./routes/comments");
+
 // Parsing Middleware
 app.use(express.json());
-//unnessacary middle ware below
-// app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(bodyParser.json({ extended: true }));
 
 // Logging Middlewaare
 app.use((req, res, next) => {
@@ -57,7 +56,8 @@ app.use("/api", function (req, res, next) {
 // Use our Routes
 app.use("/api/users", users);
 app.use("/api/posts", posts);
-
+//added comment route
+app.use("/api/comments", commentsRouter);
 // Adding some HATEOAS links.
 app.get("/", (req, res) => {
   res.json({
