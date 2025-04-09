@@ -24,6 +24,7 @@ app.use((req, res, next) => {
 ${time.toLocaleTimeString()}: Received a ${req.method} request to ${req.url}.`
   );
   //this part below affects get requests too, even those w/o a req.body defined, so added a check for seeing if the req even had a body in the first place
+  //this part
   if (req.body && Object.keys(req.body).length > 0) {
     console.log("Containing the data:");
     console.log(`${JSON.stringify(req.body)}`);
