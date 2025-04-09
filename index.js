@@ -10,9 +10,10 @@ const app = express();
 const port = 3000;
 
 // Parsing Middleware
-// app.use(express.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json({ extended: true }));
+app.use(express.json());
+//unnessacary middle ware below
+// app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.json({ extended: true }));
 
 // Logging Middlewaare
 app.use((req, res, next) => {
@@ -22,7 +23,8 @@ app.use((req, res, next) => {
     `-----
 ${time.toLocaleTimeString()}: Received a ${req.method} request to ${req.url}.`
   );
-  if (Object.keys(req.body).length > 0) {
+  //this part below affects get requests too, even those w/o a req.body defined, so added a check for seeing if the req even had a body in the first place
+  if (req.body && Object.keys(req.body).length > 0) {
     console.log("Containing the data:");
     console.log(`${JSON.stringify(req.body)}`);
   }
