@@ -40,6 +40,7 @@ This assignment will ask you to expand the example REST API application that was
 
 ## File Structure
 
+```bash
 /your-project-root
 ├── data
 │ ├── comments.js // In-memory comments data
@@ -54,3 +55,4 @@ This assignment will ask you to expand the example REST API application that was
 ├── index.js // Main application file to set up Express, middleware, and mount routers
 ├── package.json // Project configuration and dependencies
 └── README.md // This right here
+```
