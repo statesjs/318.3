@@ -10,9 +10,15 @@ This assignment will ask you to expand the example REST API application that was
 - **routes/**:  
   Contains the Express route definitions.
 
+  ```bash
+  base url : http://localhost:3000/
   - `comments.js` handles endpoints under `/api/comments`
+  http://localhost:3000/api/comments?api-key=perscholas
   - `posts.js` handles endpoints under `/api/posts`
+  http://localhost:3000/api/posts?api-key=perscholas
   - `users.js` handles endpoints under `/api/users`
+  http://localhost:3000/api/users?api-key=perscholas
+  ```
 
 - **utilities/**:  
   Contains utility modules such as custom error handlers (e.g., `error.js`).
