@@ -60,7 +60,7 @@ module.exports = router;
 //comment id specific section
 router
   .route("/:id")
-  .get((res, req) => {
+  .get((res, req, next) => {
     //since comments have unique id's, i can just use find instead
     // since it only returns one object
     const comment = comments.find((c) => c.id == req.params.id);
@@ -90,7 +90,7 @@ router
     res.json(comment);
   })
   //2.7
-  .delete("/:id", (req, res, next) => {
+  .delete((req, res, next) => {
     const index = comments.findIndex((c) => c.id == req.params.id);
     //return value of findIndex is -1 if none are found
     if (index === -1) {
