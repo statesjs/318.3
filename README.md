@@ -4,8 +4,6 @@ This assignment will ask you to expand the example REST API application that was
 
 ## Description
 
-## Description
-
 - **data/**:  
   Contains the in-memory arrays for managing data. These files export data that is used by the routes (e.g., `comments.js` for comments, `posts.js` for posts, and `users.js` for users).
 
@@ -42,4 +40,17 @@ This assignment will ask you to expand the example REST API application that was
 
 ## File Structure
 
-/your-project-root ├── data │ ├── comments.js // In-memory comments data │ ├── posts.js // In-memory posts data │ └── users.js // In-memory users data ├── routes │ ├── comments.js // Routes for /api/comments endpoints │ ├── posts.js // Routes for /api/posts endpoints │ └── users.js // Routes for /api/users endpoints ├── utilities │ └── error.js // Custom error helper/middleware ├── index.js // Main application file ├── package.json // Project configuration and dependencies └── README.md // Project documentation (this file)
+/your-project-root
+├── data
+│ ├── comments.js // In-memory comments data
+│ ├── posts.js // In-memory posts data
+│ └── users.js // In-memory users data
+├── routes
+│ ├── comments.js // Routes for handling /api/comments endpoints
+│ ├── posts.js // Routes for handling /api/posts endpoints
+│ └── users.js // Routes for handling /api/users endpoints
+├── utilities
+│ └── error.js // Custom error helper/middleware
+├── index.js // Main application file to set up Express, middleware, and mount routers
+├── package.json // Project configuration and dependencies
+└── README.md // This right here
